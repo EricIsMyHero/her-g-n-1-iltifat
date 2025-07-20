@@ -80,6 +80,7 @@
   <div id="countdown" style="margin-top: 5px; font-size: 14px; color: #c2185b;"></div>
 </div>
   <h1>💖 Hər gün 1 iltifat 💝</h1>
+
   <script>
   fetch('iltifatlar.json')
     .then(res => res.json())
@@ -105,6 +106,12 @@
         text: "Nə yəni hər gün bir iltifat?🥺💘",
         url: window.location.href
       };
+<div class="share-button">
+    <button onclick="shareSite()">💌 Saytı paylaş</button>
+</div>
+  <div class="info" id="dayCount">Gün yüklənir...</div>
+  <div class="info" id="complimentNumber"></div>
+  <div class="compliment" id="compliment">İltifat yüklənir...</div>
 
       if (navigator.share) {
         navigator.share(shareData)
@@ -153,12 +160,5 @@ function updateProgressBar() {
 updateProgressBar();
 setInterval(updateProgressBar, 1000);
   </script>
-  <div class="share-button">
-    <button onclick="shareSite()">💌 Saytı paylaş</button>
-</div>
-  <div class="info" id="dayCount">Gün yüklənir...</div>
-  <div class="info" id="complimentNumber"></div>
-  <div class="compliment" id="compliment">İltifat yüklənir...</div>
-
 </body>
 </html>
