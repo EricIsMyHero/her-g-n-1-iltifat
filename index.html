@@ -58,7 +58,7 @@
         const index = dayOfYear % compliments.length;
 
         document.getElementById("dayCount").textContent = `📅 Bugün ilin ${dayOfYear}-ci günüdür`;
-        document.getElementById("complimentNumber").textContent = `📝 Bu gün ${compliments.length} iltifatdan ${index + 1}-cisidir:`;
+        document.getElementById("complimentNumber").textContent = ` İltifatlar ${index + 1}/${compliments.length}`;
         document.getElementById("compliment").textContent = compliments[index];
       })
       .catch(error => {
