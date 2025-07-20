@@ -15,6 +15,13 @@
       position: relative;
       z-index: 1;
     }
+    <div style="margin: 40px 0;">
+  <label for="timer"><strong>Növbəti iltifata qədər vaxt:</strong></label>
+  <div style="background: #ffe6ec; border-radius: 10px; overflow: hidden;">
+    <div id="progress" style="height: 20px; width: 0; background: #c2185b; transition: width 1s;"></div>
+  </div>
+  <div id="countdown" style="margin-top: 5px; font-size: 14px; color: #c2185b;"></div>
+</div>
     h1 {
       font-size: 32px;
       color: #c2185b;
@@ -124,5 +131,33 @@
       document.body.appendChild(emoji);
     }
 </script>
+  <script>
+// ... Əvvəlki kodlar
+
+// Günü bitənə qədər progress bar
+function updateProgressBar() {
+  const now = new Date();
+  const endOfDay = new Date();
+  endOfDay.setHours(24, 0, 0, 0); // Gecə 12:00
+
+  const total = 24 * 60 * 60 * 1000; // 1 gün = ms
+  const passed = now - new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const remaining = endOfDay - now;
+  const percent = (passed / total) * 100;
+
+  document.getElementById("progress").style.width = percent + "%";
+
+  const hours = Math.floor(remaining / (1000 * 60 * 60));
+  const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+
+  document.getElementById("countdown").innerText =
+    `Yeni iltifata ${hours} saat, ${minutes} dəqiqə, ${seconds} saniyə qaldı.`;
+}
+
+// İlk dəfə çağır və hər saniyə yenilə
+updateProgressBar();
+setInterval(updateProgressBar, 1000);
+  </script>
 </body>
 </html>
