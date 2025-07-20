@@ -35,6 +35,13 @@
       align-items: center;
       justify-content: center;
     }
+        .emoji {
+      position: fixed;
+      z-index: 0;
+      user-select: none;
+      pointer-events: none;
+      opacity: 0.2;
+        }
   </style>
 </head>
 <body>
@@ -66,6 +73,17 @@
         console.error("Xəta:", error);
       });
   </script>
-
+<script>
+    const emojis = ["🌸", "🎀", "🩷", "😻", "💝", "💖"];
+    for (let i = 0; i < 100; i++) {
+      const emoji = document.createElement("div");
+      emoji.className = "emoji";
+      emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+      emoji.style.left = Math.random() * 100 + "vw";
+      emoji.style.top = Math.random() * 100 + "vh";
+      emoji.style.fontSize = (Math.random() * 20 + 20) + "px";
+      document.body.appendChild(emoji);
+    }
+</script>
 </body>
 </html>
