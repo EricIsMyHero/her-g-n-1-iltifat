@@ -76,23 +76,24 @@
   <div class="compliment" id="compliment">İltifat yüklənir...</div>
 
   <script>
-    fetch('iltifatlar.json')
-      .then(res => res.json())
-      .then(compliments => {
-        const today = new Date();
-        const day = today.getDate();
-        const month = today.toLocaleString('az-AZ', { month: 'long' }); // Ay adı (Azərbaycan dilində)
+  fetch('iltifatlar.json')
+    .then(res => res.json())
+    .then(compliments => {
+      const today = new Date();
+      const day = today.getDate();
+      const month = today.toLocaleString('az-AZ', { month: 'long' });
+      const year = today.getFullYear();
 
-        const index = today.getDate() % compliments.length;
+      const index = today.getDate() % compliments.length;
 
-        document.getElementById("dayCount").textContent = `📅 Bugün ${day} ${month}`;
-        document.getElementById("complimentNumber").textContent = ` İltifatlar ${index + 1}/${compliments.length}`;
-        document.getElementById("compliment").textContent = compliments[index];
-      })
-      .catch(error => {
-        document.getElementById("compliment").textContent = "İltifatlar yüklənə bilmədi 😢";
-        console.error("Xəta:", error);
-      });
+      document.getElementById("dayCount").textContent = `📅 Bugün ${day} ${month} ${year}`;
+      document.getElementById("complimentNumber").textContent = ` İltifatlar ${index + 1}/${compliments.length}`;
+      document.getElementById("compliment").textContent = compliments[index];
+    })
+    .catch(error => {
+      document.getElementById("compliment").textContent = "İltifatlar yüklənə bilmədi 😢";
+      console.error("Xəta:", error);
+    });
   function shareSite() {
       const shareData = {
         title: "💖Hər Gün Bir İltifat 💖",
