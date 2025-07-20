@@ -80,13 +80,6 @@
   <div id="countdown" style="margin-top: 5px; font-size: 14px; color: #c2185b;"></div>
 </div>
   <h1>💖 Hər gün 1 iltifat 💝</h1>
-<div class="share-button">
-    <button onclick="shareSite()">💌 Saytı paylaş</button>
-</div>
-  <div class="info" id="dayCount">Gün yüklənir...</div>
-  <div class="info" id="complimentNumber"></div>
-  <div class="compliment" id="compliment">İltifat yüklənir...</div>
-
   <script>
   fetch('iltifatlar.json')
     .then(res => res.json())
@@ -160,5 +153,12 @@ function updateProgressBar() {
 updateProgressBar();
 setInterval(updateProgressBar, 1000);
   </script>
+  <div class="share-button">
+    <button onclick="shareSite()">💌 Saytı paylaş</button>
+</div>
+  <div class="info" id="dayCount">Gün yüklənir...</div>
+  <div class="info" id="complimentNumber"></div>
+  <div class="compliment" id="compliment">İltifat yüklənir...</div>
+
 </body>
 </html>
