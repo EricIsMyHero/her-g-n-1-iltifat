@@ -71,13 +71,20 @@
   </style>
 </head>
 <body>
-<div style="margin: 40px 0;">
-  <label for="timer"><strong>Növbəti iltifata qədər vaxt:</strong></label>
-  <div style="background: #ffe6ec; border-radius: 10px; overflow: hidden;">
-    <div id="progress" style="height: 20px; width: 0; background: #c2185b; transition: width 1s;"></div>
+
+  <div class="compliment" id="compliment">İltifat yüklənir...</div>
+
+  <!-- BURADA PROGRESS BAR BAŞLAYIR -->
+  <div style="margin: 40px 0;">
+    <label for="timer"><strong>Növbəti iltifata qədər vaxt:</strong></label>
+    <div style="background: #ffe6ec; border-radius: 10px; overflow: hidden;">
+      <div id="progress" style="height: 20px; width: 0; background: #c2185b; transition: width 1s;"></div>
+    </div>
+    <div id="countdown" style="margin-top: 5px; font-size: 14px; color: #c2185b;"></div>
   </div>
-  <div id="countdown" style="margin-top: 5px; font-size: 14px; color: #c2185b;"></div>
-</div>
+  <!-- PROGRESS BAR BİTİR -->
+
+  <!-- script hissəsi olduğu kimi qalır -->
   <h1>💖 Hər gün 1 iltifat 💝</h1>
 <div class="share-button">
     <button onclick="shareSite()">💌 Saytı paylaş</button>
