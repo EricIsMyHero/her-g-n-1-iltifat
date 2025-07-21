@@ -243,6 +243,25 @@ setInterval(updateProgressBar, 1000);
       .then(() => console.log("✅ Service Worker qeydiyyatdan keçdi!"))
       .catch(error => console.error("❌ Xəta:", error));
   }
-  </script>
+  
+  function togglePanel() {
+  const panel = document.getElementById("panel");
+  panel.style.display = (panel.style.display === "none" || panel.style.display === "") ? "block" : "none";
+}
+
+function addCompliment() {
+  const input = document.getElementById("newCompliment");
+  const value = input.value.trim();
+  if (value) {
+    const list = document.getElementById("complimentList");
+    const li = document.createElement("li");
+    li.textContent = value;
+    list.appendChild(li);
+    input.value = "";
+  } else {
+    alert("Zəhmət olmasa boş göndərmə 🙃");
+  }
+}
+</script>
 </body>
 </html>
