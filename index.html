@@ -141,16 +141,7 @@
   <h3>İltifat əlavə et 💬</h3>
   <textarea id="newCompliment" placeholder="İltifatını buraya yaz... İltifatlarının paylaşılması üçün Insta:@the.real.ali77"></textarea>
   <button onclick="addCompliment()">Əlavə et</button>
-  <button onclick="clearAllCompliments()" style="
-  margin-top: 10px;
-  background: #888;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 14px;
-">🧹 Hamısını sil</button>
+  <button onclick="clearAllCompliments()">🧹 Hamısını sil</button>
   <hr>
   <h4>Əlavə olunanlar (Sadəcə sənə görünür):</h4>
   <ul id="complimentList"></ul>
@@ -267,12 +258,7 @@ function addCompliment() {
     compliments.push(value);
     localStorage.setItem("customCompliments", JSON.stringify(compliments));
     
-    function clearAllCompliments() {
-  if (confirm("Əminsən? Bütün əlavə etdiyin iltifatlar silinəcək!")) {
-    localStorage.removeItem("customCompliments");
-    alert("Bütün əlavə olunan iltifatlar silindi.");
-  }
-    }
+  
     // HTML-ə əlavə et
     const li = document.createElement("li");
     li.textContent = value;
@@ -282,6 +268,12 @@ function addCompliment() {
     alert("Zəhmət olmasa boş göndərmə 🙃");
   }
 }
+    function clearAllCompliments() {
+  if (confirm("Əminsən? Bütün əlavə etdiyin iltifatlar silinəcək!")) {
+    localStorage.removeItem("customCompliments");
+    alert("Bütün əlavə olunan iltifatlar silindi.");
+  }
+    }
 
 // Sayt yüklənəndə daha əvvəl yazılanları göstər
 window.addEventListener("DOMContentLoaded", () => {
