@@ -133,17 +133,25 @@
   </style>
 </head>
 <body>
-  <!-- Üzən düymə -->
-<div id="floatingBtn" onclick="togglePanel()">➕</div>
+  <!-- Aşağıdakıları body içində uyğun yerə əlavə et -->
+<button id="popup" style="position: fixed; bottom: 30px; right: 30px; background-color: #c2185b; color: white; border: none; border-radius: 50%; width: 60px; height: 60px; font-size: 24px; cursor: pointer; z-index: 10;">➕</button>
 
-<!-- Açılan panel -->
-<div id="panel">
-  <h3>İltifat əlavə et 💬</h3>
-  <textarea id="newCompliment" placeholder="İltifatını buraya yaz... İltifatının paylaşılması üçün Insta:@the.real.ali77"></textarea>
-  <button onclick="addCompliment()">Əlavə et</button>
-  <hr>
-  <h4>Əlavə olunanlar (Sadəcə sizə görünür):</h4>
-  <ul id="complimentList"></ul>
+<div id="formPopup" style="
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
+  width: 300px;
+  background-color: #fff0f5;
+  border: 1px solid #c2185b;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  display: none;
+  z-index: 20;">
+  <h3 style="margin-top: 0;">İltifat əlavə et 💌</h3>
+  <textarea id="newCompliment" placeholder="İltifatını yaz..." style="width: 100%; height: 100px; border-radius: 10px; padding: 10px; border: 1px solid #ccc;"></textarea>
+  <button onclick="addCompliment()" style="margin-top: 10px; background: #c2185b; color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer;">Göndər</button>
+  <button onclick="removeLastCompliment()" style="margin-top: 10px; background: #f44336; color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer;">🗑 Sonuncunu sil</button>
 </div>
   <link rel="manifest" href="manifest.json">
 <div style="margin: 40px 0;">
@@ -245,41 +253,34 @@ setInterval(updateProgressBar, 1000);
   }
   
 
-function togglePanel() {
-  const panel = document.getElementById("panel");
-  panel.style.display = (panel.style.display === "none" || panel.style.display === "") ? "block" : "none";
-}
+<script>
+document.getElementById("popup").onclick = function() {
+  const panel = document.getElementById("formPopup");
+  panel.style.display = panel.style.display === "none" || panel.style.display === "" ? "block" : "none";
+};
 
-// İltifat əlavə et və localStorage-a yaz
 function addCompliment() {
-  const input = document.getElementById("newCompliment");
-  const value = input.value.trim();
-  if (value) {
-    // İltifatı localStorage-a əlavə et
-    let compliments = JSON.parse(localStorage.getItem("customCompliments") || "[]");
-    compliments.push(value);
-    localStorage.setItem("customCompliments", JSON.stringify(compliments));
-    
-    // HTML-ə əlavə et
-    const li = document.createElement("li");
-    li.textContent = value;
-    document.getElementById("complimentList").appendChild(li);
-    input.value = "";
-  } else {
-    alert("Zəhmət olmasa boş göndərmə 🙃");
-  }
+  const textarea = document.getElementById("newCompliment");
+  const text = textarea.value.trim();
+  if (text.length === 0) return alert("Zəhmət olmasa bir iltifat yaz.");
+
+  let customCompliments = JSON.parse(localStorage.getItem("customCompliments") || "[]");
+  customCompliments.push(text);
+  localStorage.setItem("customCompliments", JSON.stringify(customCompliments));
+  textarea.value = "";
+  alert("İltifat əlavə olundu!");
 }
 
-// Sayt yüklənəndə daha əvvəl yazılanları göstər
-window.addEventListener("DOMContentLoaded", () => {
-  const compliments = JSON.parse(localStorage.getItem("customCompliments") || "[]");
-  const list = document.getElementById("complimentList");
-  compliments.forEach(text => {
-    const li = document.createElement("li");
-    li.textContent = text;
-    list.appendChild(li);
-  });
-});
-</script>
+function removeLastCompliment() {
+  let customCompliments = JSON.parse(localStorage.getItem("customCompliments") || "[]");
+  if (customCompliments.length === 0) {
+    alert("Silinəcək iltifat yoxdur.");
+    return;
+  }
+  customCompliments.pop();
+  localStorage.setItem("customCompliments", JSON.stringify(customCompliments));
+  alert("Sonuncu iltifat silindi!");
+}
+  </script>
 </body>
 </html>
