@@ -71,7 +71,7 @@
   </style>
 </head>
 <body>
-  <!-- İltifat əlavə et düyməsi -->
+<!-- İltifat əlavə et düyməsi -->
 <button id="addComplimentBtn" style="
   position: fixed;
   bottom: 20px;
@@ -87,7 +87,7 @@
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
   z-index: 9999;">+</button>
 
-<!-- Popup pəncərəsi -->
+<!-- Popup forma -->
 <div id="popupForm" style="
   display: none;
   position: fixed;
@@ -102,7 +102,7 @@
   z-index: 9999;">
   <h3 style="margin-top: 0; color: #c2185b;">Yeni iltifat yaz ✨</h3>
   <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdv7RWdc4FqSGYdj7Iyx7uJm7ifVaAHEKxVZ6u6wFe_qRkchA/formResponse" method="POST" target="hidden_iframe" onsubmit="formSubmitted();">
-    <textarea name="entry.1246472616" rows="4" style="width: 100%; border-radius: 8px; border: 1px solid #ccc; padding: 8px;" placeholder="İltifatını yaz..."></textarea>
+    <textarea name="entry.1246472616" rows="4" required style="width: 100%; border-radius: 8px; border: 1px solid #ccc; padding: 8px;" placeholder="İltifatını yaz..."></textarea>
     <br><br>
     <button type="submit" style="
       background-color: #c2185b;
@@ -120,8 +120,10 @@
   </form>
 </div>
 
+<!-- Gizli iframe (form göndərilməsi üçün) -->
 <iframe name="hidden_iframe" style="display:none;"></iframe>
 
+<!-- JS -->
 <script>
   const btn = document.getElementById("addComplimentBtn");
   const popup = document.getElementById("popupForm");
@@ -135,8 +137,10 @@
   }
 
   function formSubmitted() {
-    alert("İltifatın uğurla göndərildi! 💖");
-    closePopup();
+    setTimeout(() => {
+      alert("💖 İltifat uğurla göndərildi!");
+      closePopup();
+    }, 100); // Qısa gecikmə, iframe submit-dən sonra göstərmək üçün
   }
 </script>
 <div style="margin: 40px 0;">
