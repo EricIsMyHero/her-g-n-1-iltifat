@@ -69,6 +69,68 @@
       opacity: 0.2;
         }
   </style>
+  <style>
+  #floatingBtn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: #c2185b;
+    color: white;
+    font-size: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    z-index: 999;
+  }
+
+  #panel {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 300px;
+    background: #fff0f5;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 20px;
+    display: none;
+    z-index: 999;
+    max-height: 70vh;
+    overflow-y: auto;
+    text-align: left;
+  }
+
+  #panel textarea {
+    width: 100%;
+    height: 60px;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    resize: none;
+    margin-bottom: 10px;
+  }
+
+  #panel button {
+    padding: 8px 16px;
+    background-color: #c2185b;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  #complimentList {
+    padding-left: 20px;
+    font-size: 14px;
+    color: #444;
+  }
+  </style>
 </head>
 <body>
   <!-- Üzən düymə -->
