@@ -133,7 +133,7 @@
   </style>
 </head>
 <body>
-<!-- Dairəvi düymə -->
+<!-- Sağ altda dairəvi düymə -->
 <button id="popup" style="
   position: fixed;
   bottom: 25px;
@@ -143,28 +143,29 @@
   border-radius: 50%;
   background-color: #c2185b;
   color: white;
-  font-size: 30px;
+  font-size: 28px;
   border: none;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
   cursor: pointer;
-  z-index: 1000;">+</button>
+  z-index: 999;
+">➕</button>
 
 <!-- Üzən pəncərə -->
 <div id="formPopup" style="
   position: fixed;
   bottom: 100px;
   right: 25px;
-  width: 300px;
+  width: 320px;
   background-color: #fff0f5;
-  border: 1px solid #c2185b;
-  padding: 15px;
+  border: 2px solid #c2185b;
+  padding: 20px;
   border-radius: 15px;
   box-shadow: 0 8px 16px rgba(0,0,0,0.25);
   display: none;
-  z-index: 1001;
-  text-align: left;
+  z-index: 1000;
+  text-align: center;
 ">
-  <h3 style="margin-top: 0; color: #c2185b;">💌 İltifat əlavə et</h3>
+  <h3 style="margin-top: 0; color: #c2185b;">İltifat əlavə et 💌</h3>
   <textarea id="newCompliment" placeholder="İltifatını yaz..." style="
     width: 100%;
     height: 80px;
@@ -172,24 +173,30 @@
     padding: 10px;
     border: 1px solid #ccc;
     resize: none;
-    margin-bottom: 10px;"></textarea>
-  <button onclick="addCompliment()" style="
-    background: #c2185b;
-    color: white;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 14px;
-    margin-right: 8px;">➕ Əlavə et</button>
-  <button onclick="removeLastCompliment()" style="
-    background: #f44336;
-    color: white;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 14px;">🗑 Sil</button>
+    margin-bottom: 10px;
+  "></textarea>
+  <div>
+    <button onclick="addCompliment()" style="
+      background: #c2185b;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-right: 10px;
+    ">✅ Göndər</button>
+
+    <button onclick="removeLastCompliment()" style="
+      background: #f44336;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+    ">🗑 Sil</button>
+  </div>
 </div>
   <link rel="manifest" href="manifest.json">
 <div style="margin: 40px 0;">
@@ -288,34 +295,31 @@ setInterval(updateProgressBar, 1000);
       .catch(error => console.error("❌ Xəta:", error));
   }
   
-// Aç / Bağla funksiyası
 document.getElementById("popup").onclick = function () {
   const panel = document.getElementById("formPopup");
   panel.style.display = (panel.style.display === "none" || panel.style.display === "") ? "block" : "none";
 };
 
-// İltifat əlavə et
 function addCompliment() {
   const textarea = document.getElementById("newCompliment");
   const text = textarea.value.trim();
-  if (!text) return alert("Zəhmət olmasa bir iltifat yaz.");
+  if (!text) return alert("Zəhmət olmasa bir iltifat yaz!");
 
-  let customCompliments = JSON.parse(localStorage.getItem("customCompliments") || "[]");
-  customCompliments.push(text);
-  localStorage.setItem("customCompliments", JSON.stringify(customCompliments));
+  let compliments = JSON.parse(localStorage.getItem("customCompliments") || "[]");
+  compliments.push(text);
+  localStorage.setItem("customCompliments", JSON.stringify(compliments));
   textarea.value = "";
   alert("İltifat əlavə olundu!");
 }
 
-// Sonuncu iltifatı sil
 function removeLastCompliment() {
-  let customCompliments = JSON.parse(localStorage.getItem("customCompliments") || "[]");
-  if (customCompliments.length === 0) {
+  let compliments = JSON.parse(localStorage.getItem("customCompliments") || "[]");
+  if (compliments.length === 0) {
     alert("Silinəcək iltifat yoxdur.");
     return;
   }
-  customCompliments.pop();
-  localStorage.setItem("customCompliments", JSON.stringify(customCompliments));
+  compliments.pop();
+  localStorage.setItem("customCompliments", JSON.stringify(compliments));
   alert("Sonuncu iltifat silindi!");
 }
 </script>
