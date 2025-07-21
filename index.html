@@ -165,5 +165,12 @@ function updateProgressBar() {
 updateProgressBar();
 setInterval(updateProgressBar, 1000);
   </script>
+  <script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker.js")
+      .then(() => console.log("✅ Service Worker qeydiyyatdan keçdi!"))
+      .catch(error => console.error("❌ Xəta:", error));
+  }
+  </script>
 </body>
 </html>
