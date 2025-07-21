@@ -163,8 +163,7 @@ function updateProgressBar() {
 // İlk dəfə çağır və hər saniyə yenilə
 updateProgressBar();
 setInterval(updateProgressBar, 1000);
-  </script>
-  <script>
+
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("service-worker.js")
       .then(() => console.log("✅ Service Worker qeydiyyatdan keçdi!"))
