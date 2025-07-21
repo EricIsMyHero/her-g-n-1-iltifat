@@ -244,24 +244,42 @@ setInterval(updateProgressBar, 1000);
       .catch(error => console.error("❌ Xəta:", error));
   }
   
-  function togglePanel() {
+
+function togglePanel() {
   const panel = document.getElementById("panel");
   panel.style.display = (panel.style.display === "none" || panel.style.display === "") ? "block" : "none";
 }
 
+// İltifat əlavə et və localStorage-a yaz
 function addCompliment() {
   const input = document.getElementById("newCompliment");
   const value = input.value.trim();
   if (value) {
-    const list = document.getElementById("complimentList");
+    // İltifatı localStorage-a əlavə et
+    let compliments = JSON.parse(localStorage.getItem("customCompliments") || "[]");
+    compliments.push(value);
+    localStorage.setItem("customCompliments", JSON.stringify(compliments));
+    
+    // HTML-ə əlavə et
     const li = document.createElement("li");
     li.textContent = value;
-    list.appendChild(li);
+    document.getElementById("complimentList").appendChild(li);
     input.value = "";
   } else {
     alert("Zəhmət olmasa boş göndərmə 🙃");
   }
 }
+
+// Sayt yüklənəndə daha əvvəl yazılanları göstər
+window.addEventListener("DOMContentLoaded", () => {
+  const compliments = JSON.parse(localStorage.getItem("customCompliments") || "[]");
+  const list = document.getElementById("complimentList");
+  compliments.forEach(text => {
+    const li = document.createElement("li");
+    li.textContent = text;
+    list.appendChild(li);
+  });
+});
 </script>
 </body>
 </html>
