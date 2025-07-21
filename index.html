@@ -71,6 +71,18 @@
   </style>
 </head>
 <body>
+  <!-- Üzən düymə -->
+<div id="floatingBtn" onclick="togglePanel()">➕</div>
+
+<!-- Açılan panel -->
+<div id="panel">
+  <h3>İltifat əlavə et 💬</h3>
+  <textarea id="newCompliment" placeholder="İltifatını buraya yaz..."></textarea>
+  <button onclick="addCompliment()">Əlavə et</button>
+  <hr>
+  <h4>Əlavə olunanlar:</h4>
+  <ul id="complimentList"></ul>
+</div>
   <link rel="manifest" href="manifest.json">
 <div style="margin: 40px 0;">
   <label for="timer" style="font-weight: bold; display: block; margin-bottom: 10px;">
