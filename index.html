@@ -297,11 +297,11 @@ function addCompliment() {
 window.addEventListener("DOMContentLoaded", () => {
   const compliments = JSON.parse(localStorage.getItem("customCompliments") || "[]");
   const list = document.getElementById("complimentList");
-  compliments.forEach(text => {
-    const li = document.createElement("li");
-    li.textContent = text;
-    list.appendChild(li);
-  });
+    customCompliments.forEach(text => {
+  const li = document.createElement("li");
+  li.textContent = text;
+  complimentList.appendChild(li);
+});
 });
 </script>
 </body>
