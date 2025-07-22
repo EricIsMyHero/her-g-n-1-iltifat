@@ -140,7 +140,27 @@
 <div id="panel">
   <h3>İltifat əlavə et 💬</h3>
   <textarea id="newCompliment" placeholder="İltifatını buraya yaz... İltifatlarının paylaşılması üçün Insta:@the.real.ali77"></textarea>
-  <button onclick="addCompliment()">Əlavə et</button>
+  <button onclick="addCompliment()"
+style="
+  margin-top: 10px;
+  background: #388E3C;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+">➕ Əlavə et</button>
+<button onclick="clearAllCompliments()" style="
+  margin-top: 10px;
+  background: #C62828;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+">🧹 Hamısını sil</button>
   <hr>
   <h4>Əlavə olunanlar (Sadəcə sənə görünür):</h4>
   <ul id="complimentList"></ul>
@@ -277,6 +297,12 @@ window.addEventListener("DOMContentLoaded", () => {
     list.appendChild(li);
   });
 });
+function clearAllCompliments() {
+  if (confirm("Əminsən? Bütün əlavə etdiyin iltifatlar silinəcək!")) {
+    localStorage.removeItem("customCompliments");
+    alert("Bütün əlavə olunan iltifatlar silindi.");
+  }
+}
 </script>
 </body>
 </html>
