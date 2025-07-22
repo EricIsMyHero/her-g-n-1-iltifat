@@ -74,11 +74,11 @@
     position: fixed;
     bottom: 30px;
     right: 30px;
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     background-color: #c2185b;
     color: white;
-    font-size: 25px;
+    font-size: 30px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -134,32 +134,13 @@
 </head>
 <body>
 <!-- Üzən düymə -->
-<div id="floatingBtn" onclick="togglePanel()">➕ İltifat</div>
+<div id="floatingBtn" onclick="togglePanel()">➕</div>
 
 <!-- Açılan panel -->
 <div id="panel">
   <h3>İltifat əlavə et 💬</h3>
   <textarea id="newCompliment" placeholder="İltifatını buraya yaz... İltifatlarının paylaşılması üçün Insta:@the.real.ali77"></textarea>
-  <button onclick="addCompliment()" style="
-  margin-top: 10px;
-  background:#388E3C;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 14px;
-  ">➕ Əlavə et</button>
-  <button onclick="clearAllCompliments()" style="
-  margin-top: 10px;
-  background: #C62828;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 14px;
-">🧹 Hamısını sil</button>
+  <button onclick="addCompliment()">Əlavə et</button>
   <hr>
   <h4>Əlavə olunanlar (Sadəcə sənə görünür):</h4>
   <ul id="complimentList"></ul>
@@ -276,7 +257,6 @@ function addCompliment() {
     compliments.push(value);
     localStorage.setItem("customCompliments", JSON.stringify(compliments));
     
-  
     // HTML-ə əlavə et
     const li = document.createElement("li");
     li.textContent = value;
@@ -286,16 +266,12 @@ function addCompliment() {
     alert("Zəhmət olmasa boş göndərmə 🙃");
   }
 }
-    function clearAllCompliments() {
-  if (confirm("Əminsən? Bütün əlavə etdiyin iltifatlar silinəcək!")) {
-    localStorage.removeItem("customCompliments");
-    alert("Bütün əlavə olunan iltifatlar silindi. (Dəyişikliklər üçün səhifəni yenilə)");
-  }
-    }
 
 // Sayt yüklənəndə daha əvvəl yazılanları göstər
 window.addEventListener("DOMContentLoaded", () => {
-      compliments.forEach(text => {
+  const compliments = JSON.parse(localStorage.getItem("customCompliments") || "[]");
+  const list = document.getElementById("complimentList");
+  compliments.forEach(text => {
     const li = document.createElement("li");
     li.textContent = text;
     list.appendChild(li);
