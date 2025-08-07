@@ -1,305 +1,324 @@
-<!DOCTYPE html>  <html lang="az">  
-<head>  
-  <meta charset="UTF-8">  
-  <title>Hər gün 1 iltifat</title>  
-  <style>  
-    body {  
-      background: #ffe6f0;  
-      font-family: 'Segoe UI', sans-serif;  
-      color: #333;  
-      padding: 40px;  
-      text-align: center;  
-      max-width: 600px;  
-      margin: auto;  
-      position: relative;  
-      z-index: 1;  
-    }  h1 {  
-  font-size: 32px;  
-  color: #c2185b;  
-  margin-bottom: 30px;  
-}  
- .share-button {  
-  text-align: center;  
-  margin-bottom: 30px;  
-}  
-
-.share-button button {  
-  padding: 10px 20px;  
-  background-color: #c2185b;  
-  color: white;  
-  border: none;  
-  border-radius: 10px;  
-  font-size: 16px;  
-  cursor: pointer;  
-  transition: 0.3s;  
-  position: relative;  
-  z-index: 1;  
-}  
-
-.share-button button:hover {  
-  background-color: #a01048;  
-}  
-.info {  
-  font-size: 16px;  
-  margin-bottom: 20px;  
-  color: #666;  
-}  
-.compliment {  
-  font-size: 20px;  
-  font-style: italic;  
-  background: #fff0f5;  
-  padding: 20px;  
-  border-radius: 10px;  
-  box-shadow: 0 0 10px #f9dce5;  
-  min-height: 120px;  
-  display: flex;  
-  align-items: center;  
-  justify-content: center;  
-  position: relative;  
-  z-index: 1;  
-}  
-    .emoji {  
-  position: fixed;  
-  z-index: 0;  
-  user-select: none;  
-  pointer-events: none;  
-  opacity: 0.2;  
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8">
+  <title>Hər gün 1 iltifat</title>
+  <style>
+    body {
+      background: #ffe6f0;
+      font-family: 'Segoe UI', sans-serif;
+      color: #333;
+      padding: 40px;
+      text-align: center;
+      max-width: 600px;
+      margin: auto;
+      position: relative;
+      z-index: 1;
     }
 
-  </style>  
-  <style>  
-  #floatingBtn {  
-    position: fixed;  
-    bottom: 30px;  
-    right: 30px;  
-    width: 100px;  
-    height: 100px;  
-    background-color: #c2185b;  
-    color: white;  
-    font-size: 25px;  
-    border-radius: 50%;  
-    display: flex;  
-    align-items: center;  
-    justify-content: center;  
-    cursor: pointer;  
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);  
-    z-index: 999;  
-  }  #panel {
-position: fixed;
-bottom: 100px;
-right: 30px;
-width: 600px;
-background: #fff0f5;
-border-radius: 15px;
-box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-padding: 20px;
-display: none;
-z-index: 999;
-max-height: 240vh;
-overflow-y: auto;
-text-align: left;
-}
+    h1 {
+      font-size: 32px;
+      color: #c2185b;
+      margin-bottom: 30px;
+    }
 
-#panel textarea {
-width: 100%;
-height: 60px;
-padding: 10px;
-font-size: 14px;
-border-radius: 8px;
-border: 1px solid #ccc;
-resize: none;
-margin-bottom: 10px;
-}
+    .share-button {
+      text-align: center;
+      margin-bottom: 30px;
+    }
 
-#panel button {
-padding: 8px 16px;
-background-color: #c2185b;
-color: white;
-border: none;
-border-radius: 8px;
-cursor: pointer;
-font-size: 14px;
-}
+    .share-button button {
+      padding: 10px 20px;
+      background-color: #c2185b;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
 
-#complimentList {
-padding-left: 20px;
-font-size: 14px;
-color: #444;
-}
-</style>
+    .share-button button:hover {
+      background-color: #a01048;
+    }
 
-</head>  
-<body>  
-<!-- Üzən düymə -->  
-<div id="floatingBtn" onclick="togglePanel()">➕ İltifat</div>  <!-- Açılan panel -->  <div id="panel">  
-  <h3>İltifat əlavə et 💬</h3>  
-  <textarea id="newCompliment" placeholder="İltifatını buraya yaz... İltifatlarının paylaşılması üçün Insta:@the.real.ali77"></textarea>  
-  <button onclick="addCompliment()"  
-style="  
-  margin-top: 10px;  
-  background: #388E3C;  
-  color: white;  
-  border: none;  
-  padding: 8px 16px;  
-  border-radius: 8px;  
-  cursor: pointer;  
-  font-size: 14px;  
-">➕ Əlavə et</button>  
-<button onclick="clearAllCompliments()" style="  
-  margin-top: 10px;  
-  background: #C62828;  
-  color: white;  
-  border: none;  
-  padding: 8px 16px;  
-  border-radius: 8px;  
-  cursor: pointer;  
-  font-size: 14px;  
-">🧹 Hamısını sil</button>  
-  <hr>  
-  <h4>Əlavə olunanlar (Sadəcə sənə görünür):</h4>  
-  <ul id="complimentList"></ul>  
-</div>  
-  <link rel="manifest" href="manifest.json">  
-<div style="margin: 40px 0;">  
-  <label for="timer" style="font-weight: bold; display: block; margin-bottom: 10px;">  
-    Növbəti iltifata qədərki vaxt:  
-  </label>  
-  <div style="background: #ffe6ec; border-radius: 10px; overflow: hidden; height: 20px; border: 1px solid #e0bfc7; position: relative;  
-      z-index: 1;">  
-    <div id="progress" style="height: 100%; width: 0; background: #c2185b; transition: width 1s;"></div>  
-  </div>  
-  <div id="countdown" style="margin-top: 8px; font-size: 14px; color: #c2185b;"></div>  
-</div>  
-  <h1>💖 Hər gün 1 iltifat 💝</h1>    <div class="info" id="dayCount">Gün yüklənir...</div>  
-  <div class="info" id="complimentNumber"></div>  
-  <div class="compliment" id="compliment">İltifat yüklənir...</div>  <div class="share-button">  
-    <button onclick="shareSite()">💌 Saytı paylaş</button>  
-</div>  
-  <script>  
-  fetch('iltifatlar.json')  
-    .then(res => res.json())  
-    .then(compliments => {  
-      const today = new Date();  
-      const day = today.getDate();  
-      const month = today.toLocaleString('az-AZ', { month: 'long' });  
-      const year = today.getFullYear();  const index = today.getDate() % compliments.length;  
+    .info {
+      font-size: 16px;
+      margin-bottom: 20px;
+      color: #666;
+    }
 
-  document.getElementById("dayCount").textContent = `📅 Bugün ${day} ${month} ${year}`;  
-  document.getElementById("complimentNumber").textContent = ` İltifatlar ${index + 1}/${compliments.length}`;  
-  document.getElementById("compliment").textContent = compliments[index];  
-})  
-.catch(error => {  
-  document.getElementById("compliment").textContent = "İltifatlar yüklənə bilmədi 😢";  
-  console.error("Xəta:", error);  
-});
+    .compliment {
+      font-size: 20px;
+      font-style: italic;
+      background: #fff0f5;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #f9dce5;
+      min-height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-function shareSite() {
-const shareData = {
-title: "💖Hər Gün Bir İltifat 💖",
-text: "Nə yəni hər gün bir iltifat?🥺💘",
-url: window.location.href
-};
+    .emoji {
+      position: fixed;
+      z-index: 0;
+      user-select: none;
+      pointer-events: none;
+      opacity: 0.2;
+    }
 
-if (navigator.share) {  
-    navigator.share(shareData)  
-      .then(() => console.log("Paylaşıldı"))  
-      .catch((err) => console.log("Xəta:", err));  
-  } else {  
-    prompt("Linki kopyala və paylaş ✨", window.location.href);  
-  }
+    #floatingBtn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 100px;
+      height: 100px;
+      background-color: #c2185b;
+      color: white;
+      font-size: 25px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      z-index: 999;
+    }
 
-}
-const emojis = ["🌸", "🎀", "🩷", "😻", "💝", "💖"];
-for (let i = 0; i < 100; i++) {
-const emoji = document.createElement("div");
-emoji.className = "emoji";
-emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-emoji.style.left = Math.random() * 100 + "vw";
-emoji.style.top = Math.random() * 100 + "vh";
-emoji.style.fontSize = (Math.random() * 20 + 20) + "px";
-document.body.appendChild(emoji);
-}
-// ... Əvvəlki kodlar
+    #panel {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      width: 600px;
+      background: #fff0f5;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      display: none;
+      z-index: 999;
+      max-height: 240vh;
+      overflow-y: auto;
+      text-align: left;
+    }
 
-// Günü bitənə qədər progress bar
-function updateProgressBar() {
-  const now = new Date();
-  const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  const endOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+    #panel textarea {
+      width: 100%;
+      height: 60px;
+      padding: 10px;
+      font-size: 14px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      resize: none;
+      margin-bottom: 10px;
+    }
 
-  const total = endOfDay - startOfDay;
-  const passed = now - startOfDay;
-  const remaining = endOfDay - now;
+    #panel button {
+      padding: 8px 16px;
+      background-color: #c2185b;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-right: 5px;
+    }
 
-  const percent = Math.min((passed / total) * 100, 100); // 100%-dən artıq olmasın
+    #complimentList {
+      padding-left: 20px;
+      font-size: 14px;
+      color: #444;
+    }
 
-  document.getElementById("progress").style.width = percent + "%";
+    footer {
+      margin-top: 80px;
+      padding: 20px;
+      background-color: #fff0f5;
+      color: #000;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      font-size: 16px;
+    }
 
-  const hours = Math.floor(remaining / (1000 * 60 * 60));
-  const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+    footer a {
+      color: #f48fb1;
+    }
 
-  document.getElementById("countdown").innerText =
-    `Yeni iltifata ${hours} saat, ${minutes} dəqiqə, ${seconds} saniyə qaldı.`;
-}
+    #progress-container {
+      background: #ffe6ec;
+      border-radius: 10px;
+      overflow: hidden;
+      height: 20px;
+      border: 1px solid #e0bfc7;
+      position: relative;
+    }
 
-// İlk dəfə çağır və hər saniyə yenilə
-updateProgressBar();
-setInterval(updateProgressBar, 1000);
+    #progress {
+      height: 100%;
+      width: 0;
+      background: #c2185b;
+      transition: width 1s;
+    }
 
-if ("serviceWorker" in navigator) {
-navigator.serviceWorker.register("service-worker.js")
-.then(() => console.log("✅ Service Worker qeydiyyatdan keçdi!"))
-.catch(error => console.error("❌ Xəta:", error));
-}
+    #countdown {
+      margin-top: 8px;
+      font-size: 14px;
+      color: #c2185b;
+    }
+  </style>
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
 
-function togglePanel() {
-const panel = document.getElementById("panel");
-panel.style.display = (panel.style.display === "none" || panel.style.display === "") ? "block" : "none";
-}
+  <div id="floatingBtn" onclick="togglePanel()">➕ İltifat</div>
 
-// İltifat əlavə et və localStorage-a yaz
-function addCompliment() {
-const input = document.getElementById("newCompliment");
-const value = input.value.trim();
-if (value) {
-// İltifatı localStorage-a əlavə et
-let compliments = JSON.parse(localStorage.getItem("customCompliments") || "[]");
-compliments.push(value);
-localStorage.setItem("customCompliments", JSON.stringify(compliments));
+  <div id="panel">
+    <h3>İltifat əlavə et 💬</h3>
+    <textarea id="newCompliment" placeholder="İltifatını buraya yaz... Insta: @the.real.ali77"></textarea>
+    <button onclick="addCompliment()" style="background:#388E3C;">➕ Əlavə et</button>
+    <button onclick="clearAllCompliments()" style="background:#C62828;">🧹 Hamısını sil</button>
+    <hr>
+    <h4>Əlavə olunanlar (Sadəcə sənə görünür):</h4>
+    <ul id="complimentList"></ul>
+  </div>
 
-// HTML-ə əlavə et  
-const li = document.createElement("li");  
-li.textContent = value;  
-document.getElementById("complimentList").appendChild(li);  
-input.value = "";
+  <div style="margin: 40px 0;">
+    <label for="timer" style="font-weight: bold; display: block; margin-bottom: 10px;">Növbəti iltifata qədərki vaxt:</label>
+    <div id="progress-container">
+      <div id="progress"></div>
+    </div>
+    <div id="countdown"></div>
+  </div>
 
-} else {
-alert("Zəhmət olmasa boş göndərmə 🙃");
-}
-}
+  <h1>💖 Hər gün 1 iltifat 💝</h1>
+  <div class="info" id="dayCount">Gün yüklənir...</div>
+  <div class="info" id="complimentNumber"></div>
+  <div class="compliment" id="compliment">İltifat yüklənir...</div>
 
-// Sayt yüklənəndə daha əvvəl yazılanları göstər
-window.addEventListener("DOMContentLoaded", () => {
-const compliments = JSON.parse(localStorage.getItem("customCompliments") || "[]");
-const list = document.getElementById("complimentList");
-compliments.forEach(text => {
-const li = document.createElement("li");
-li.textContent = text;
-list.appendChild(li);
-});
-});
-function clearAllCompliments() {
-if (confirm("Əminsən? Bütün əlavə etdiyin iltifatlar silinəcək!")) {
-localStorage.removeItem("customCompliments");
-alert("Bütün əlavə olunan iltifatlar silindi. (İltifatların silinməsi üçün səhifəni yenilə)");
-}
-}
-</script>
+  <div class="share-button">
+    <button onclick="shareSite()">💌 Saytı paylaş</button>
+  </div>
 
-  <footer style="margin-top: 80px; padding: 20px; background-color: #fff0f5; color: #000; text-align: center; position: relative; z-index: 1;font-size: 24px;">  
-  © 2025 Sənin saytın 💖 | <a href="https://www.instagram.com/the.real.ali77?igsh=NmNqMzhxYjl1ZHN4" style="color: #f48fb1;">Instagram</a> | <a href="mailto:ericismyhero2467@gmail.com" style="color: #f48fb1;">Təklif və İradlarınız üçün</a>  
-  </footer>  
-</script>  
-</body>  
-</html> 
+  <footer>
+    © 2025 Sənin saytın 💖 |
+    <a href="https://www.instagram.com/the.real.ali77?igsh=NmNqMzhxYjl1ZHN4">Instagram</a> |
+    <a href="mailto:ericismyhero2467@gmail.com">Təklif və İradlarınız üçün</a>
+  </footer>
+
+  <script>
+    fetch('iltifatlar.json')
+      .then(res => res.json())
+      .then(compliments => {
+        const today = new Date();
+        const day = today.getDate();
+        const month = today.toLocaleString('az-AZ', { month: 'long' });
+        const year = today.getFullYear();
+        const index = today.getDate() % compliments.length;
+
+        document.getElementById("dayCount").textContent = `📅 Bugün ${day} ${month} ${year}`;
+        document.getElementById("complimentNumber").textContent = ` İltifatlar ${index + 1}/${compliments.length}`;
+        document.getElementById("compliment").textContent = compliments[index];
+      })
+      .catch(error => {
+        document.getElementById("compliment").textContent = "İltifatlar yüklənə bilmədi 😢";
+        console.error("Xəta:", error);
+      });
+
+    function shareSite() {
+      const shareData = {
+        title: "💖Hər Gün Bir İltifat 💖",
+        text: "Nə yəni hər gün bir iltifat?🥺💘",
+        url: window.location.href
+      };
+
+      if (navigator.share) {
+        navigator.share(shareData).catch((err) => console.log("Xəta:", err));
+      } else {
+        prompt("Linki kopyala və paylaş ✨", window.location.href);
+      }
+    }
+
+    const emojis = ["🌸", "🎀", "🩷", "😻", "💝", "💖"];
+    for (let i = 0; i < 100; i++) {
+      const emoji = document.createElement("div");
+      emoji.className = "emoji";
+      emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+      emoji.style.left = Math.random() * 100 + "vw";
+      emoji.style.top = Math.random() * 100 + "vh";
+      emoji.style.fontSize = (Math.random() * 20 + 20) + "px";
+      document.body.appendChild(emoji);
+    }
+
+    function updateProgressBar() {
+      const now = new Date();
+      const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const endOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+
+      const total = endOfDay - startOfDay;
+      const passed = now - startOfDay;
+      const remaining = endOfDay - now;
+
+      const percent = Math.min((passed / total) * 100, 100);
+      document.getElementById("progress").style.width = percent + "%";
+
+      const hours = Math.floor(remaining / (1000 * 60 * 60));
+      const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerText =
+        `Yeni iltifata ${hours} saat, ${minutes} dəqiqə, ${seconds} saniyə qaldı.`;
+    }
+
+    updateProgressBar();
+    setInterval(updateProgressBar, 1000);
+
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("service-worker.js")
+        .then(() => console.log("✅ Service Worker qeydiyyatdan keçdi!"))
+        .catch(error => console.error("❌ Xəta:", error));
+    }
+
+    function togglePanel() {
+      const panel = document.getElementById("panel");
+      panel.style.display = (panel.style.display === "none" || panel.style.display === "") ? "block" : "none";
+    }
+
+    function addCompliment() {
+      const input = document.getElementById("newCompliment");
+      const value = input.value.trim();
+      if (value) {
+        let compliments = JSON.parse(localStorage.getItem("customCompliments") || "[]");
+        compliments.push(value);
+        localStorage.setItem("customCompliments", JSON.stringify(compliments));
+
+        const li = document.createElement("li");
+        li.textContent = value;
+        document.getElementById("complimentList").appendChild(li);
+        input.value = "";
+      } else {
+        alert("Zəhmət olmasa boş göndərmə 🙃");
+      }
+    }
+
+    function clearAllCompliments() {
+      if (confirm("Əminsən? Bütün əlavə etdiyin iltifatlar silinəcək!")) {
+        localStorage.removeItem("customCompliments");
+        alert("Bütün əlavə olunan iltifatlar silindi. (İltifatların silinməsi üçün səhifəni yenilə)");
+      }
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const compliments = JSON.parse(localStorage.getItem("customCompliments") || "[]");
+      const list = document.getElementById("complimentList");
+      compliments.forEach(text => {
+        const li = document.createElement("li");
+        li.textContent = text;
+        list.appendChild(li);
+      });
+    });
+  </script>
+
+</body>
+</html>
