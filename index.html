@@ -234,13 +234,14 @@ style="
 // Günü bitənə qədər progress bar
 function updateProgressBar() {
   const now = new Date();
-  const endOfDay = new Date();
-  endOfDay.setHours(24, 0, 0, 0); // Gecə 12:00
+  const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const endOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
 
-  const total = 24 * 60 * 60 * 1000; // 1 gün = ms
-  const passed = now - new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const total = endOfDay - startOfDay;
+  const passed = now - startOfDay;
   const remaining = endOfDay - now;
-  const percent = (passed / total) * 100;
+
+  const percent = Math.min((passed / total) * 100, 100); // 100%-dən artıq olmasın
 
   document.getElementById("progress").style.width = percent + "%";
 
