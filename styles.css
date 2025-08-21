@@ -8,7 +8,7 @@ body {
   margin: auto;
   position: relative;
   z-index: 1;
-  padding-bottom: 120px; /* Floating düymənin boyuna uyğun boşluq */
+  padding-bottom: 20px; /* Floating düymənin boyuna uyğun boşluq */
 }
 
 h1 {
