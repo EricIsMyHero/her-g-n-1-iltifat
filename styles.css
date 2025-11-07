@@ -12,7 +12,7 @@ body {
     margin: 0 auto;
     min-height: 100vh;
     position: relative;
-    z-index: 1;
+    z-index: 10;
 }
 h1 {
     /* Playfair Display şrifti daha cəlbedicidir */
@@ -20,7 +20,7 @@ h1 {
     font-size: 28px;
     color: #c2185b;
     margin-bottom: 25px;
-    z-index: 1;
+    z-index: 10;
 }
 /* --- İltifat və Məlumat --- */
 .info {
@@ -42,7 +42,7 @@ h1 {
     justify-content: center;
     margin: 20px auto;
     max-width: 90%; /* Mobil ekrana sığsın */
-    z-index: 1;
+    z-index: 10;
     transition: opacity 0.5s ease-in-out; /* Animasiya üçün */
 }
 /* --- Düymə Stili --- */
@@ -58,7 +58,7 @@ h1 {
     font-size: 16px;
     cursor: pointer;
     transition: 0.3s;
-    z-index: 1;
+    z-index: 10;
     font-weight: bold;
 }
 .share-button button:hover {
@@ -74,7 +74,7 @@ h1 {
     border: 1px solid #e0bfc7;
     margin: 0 auto 10px;
     max-width: 300px; /* Maksimal eni təyin edin */
-    z-index: 1;
+    z-index: 10;
 }
 #progress {
     height: 100%;
@@ -152,7 +152,7 @@ h1 {
     font-size: 14px;
     width: 100%;
     color: #444;
-    z-index: 1;
+    z-index: 10;
     list-style-type: disc;
 }
 /* --- Footer --- */
@@ -164,7 +164,7 @@ footer {
     color: #000;
     text-align: center;
     position: relative;
-    z-index: 1;
+    z-index: 10;
     font-size: 14px;
     border-top: 1px solid #f9dce5;
 }
