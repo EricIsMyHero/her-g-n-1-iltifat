@@ -1,50 +1,57 @@
 /* Başlanğıc: Mobil Birinci üçün şrift daxil edin */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+
 body {
     background: #ffe6f0;
     font-family: 'Segoe UI', sans-serif;
     color: #333;
-    /* Responsive padding (vh/vw) istifadə edin */
-    padding: 20px 10px; 
+    /* Responsive padding */
+    padding: 20px 10px;
     text-align: center;
-    /* Düzəliş: max-width-i 100% edin və mərkəzləşdirin */
-    max-width: 100%; 
+    max-width: 100%;
     margin: 0 auto;
     min-height: 100vh;
     position: relative;
-    z-index: 10;
+    /* Düzəliş: Bütün əsas məzmunu yuxarı çəkin */
+    z-index: 10; 
 }
+
 h1 {
-    /* Playfair Display şrifti daha cəlbedicidir */
-    font-family: 'Playfair Display', serif; 
+    font-family: 'Playfair Display', serif;
     font-size: 28px;
     color: #c2185b;
     margin-bottom: 25px;
+    position: relative;
     z-index: 10;
 }
+
 /* --- İltifat və Məlumat --- */
 .info {
     font-size: 15px;
     margin-bottom: 15px;
     color: #555;
+    position: relative;
+    z-index: 10;
 }
+
 .compliment {
     font-size: 18px;
     font-style: italic;
     background: #fff0f5;
-    /* Mobil üçün padding azaldın */
-    padding: 20px; 
+    padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(194, 24, 91, 0.1); /* Kölgəni gücləndirin */
+    box-shadow: 0 4px 10px rgba(194, 24, 91, 0.1);
     min-height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 20px auto;
-    max-width: 90%; /* Mobil ekrana sığsın */
-    z-index: 10;
-    transition: opacity 0.5s ease-in-out; /* Animasiya üçün */
+    max-width: 90%;
+    position: relative; /* Z-index-in daha etibarlı işləməsi üçün */
+    z-index: 10; 
+    transition: opacity 0.5s ease-in-out;
 }
+
 /* --- Düymə Stili --- */
 .share-button {
     margin-bottom: 25px;
@@ -58,6 +65,7 @@ h1 {
     font-size: 16px;
     cursor: pointer;
     transition: 0.3s;
+    position: relative;
     z-index: 10;
     font-weight: bold;
 }
@@ -65,15 +73,17 @@ h1 {
     background-color: #a01048;
     transform: translateY(-1px);
 }
+
 /* --- Progress Bar --- */
 #progress-container {
     background: #ffe6ec;
     border-radius: 10px;
     overflow: hidden;
-    height: 15px; /* Hündürlüyü azaldın */
+    height: 15px;
     border: 1px solid #e0bfc7;
     margin: 0 auto 10px;
-    max-width: 300px; /* Maksimal eni təyin edin */
+    max-width: 300px;
+    position: relative;
     z-index: 10;
 }
 #progress {
@@ -87,17 +97,17 @@ h1 {
     font-size: 14px;
     color: #c2185b;
 }
+
 /* --- Floating Button (Mobil) --- */
 #floatingBtn {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    /* Düzəliş: Mobil üçün sabit ölçü istifadə edin */
-    width: 50px; 
+    width: 50px;
     height: 50px;
     background-color: #c2185b;
     color: white;
-    font-size: 20px; /* Plus simvolu daha böyük olsun */
+    font-size: 20px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -106,26 +116,25 @@ h1 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     z-index: 999;
 }
+
 /* --- Panel (Mobil) --- */
 #panel {
     position: fixed;
-    bottom: 80px; /* FloatingBtn-in üstündə qalsın */
+    bottom: 80px;
     right: 15px;
-    /* Düzəliş: Mobil üçün nisbi en */
-    width: 90%; 
+    width: 90%;
     background: #fff0f5;
     border-radius: 15px;
     padding: 15px;
     display: none;
-    z-index: 998; /* FloatingBtn-dən bir pillə aşağı */
-    max-height: 70vh; /* Mobil ekranın hündürlüyünün 70%-i */
+    z-index: 998;
+    max-height: 70vh;
     overflow-y: auto;
     text-align: left;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 #panel textarea {
-    /* Düzəliş: 100% en və normal padding */
-    width: 100%; 
+    width: 100%;
     height: 80px;
     padding: 10px;
     font-size: 14px;
@@ -133,7 +142,7 @@ h1 {
     border: 1px solid #ccc;
     resize: none;
     margin-bottom: 15px;
-    box-sizing: border-box; /* Padding eni pozmasın */
+    box-sizing: border-box;
     box-shadow: none;
 }
 #panel button {
@@ -152,19 +161,19 @@ h1 {
     font-size: 14px;
     width: 100%;
     color: #444;
+    position: relative; /* Düzəliş: Z-index-in işləməsi üçün */
     z-index: 10;
     list-style-type: disc;
 }
+
 /* --- Footer --- */
 footer {
-    /* Düzəliş: Fixed footer istifadə etsək, margin-top lazım deyil */
-    margin-top: 0; 
     padding: 15px 0;
-    background-color: rgba(255, 240, 245, 0.9); /* Yarı-şəffaf fon */
+    background-color: rgba(255, 240, 245, 0.9);
     color: #000;
     text-align: center;
     position: relative;
-    z-index: 10;
+    z-index: 10; /* Footer ən azı 10 olmalıdır */
     font-size: 14px;
     border-top: 1px solid #f9dce5;
 }
@@ -173,15 +182,15 @@ footer a {
     border-radius: 8px;
     text-decoration: none;
 }
-/* --- Emoji Animasiyası --- */
+
+/* --- Emoji Animasiyası (Ən arxada qalır) --- */
 .emoji {
     position: fixed;
-    z-index: 0;
+    z-index: 0; 
     user-select: none;
     pointer-events: none;
     opacity: 0.2;
-    /* Əlavə: Animasiya üçün stil */
-    animation: floating 10s infinite linear; 
+    animation: floating 10s infinite linear;
 }
 
 @keyframes floating {
@@ -189,6 +198,7 @@ footer a {
     50% { transform: translateY(-20px); }
     100% { transform: translateY(0); }
 }
+
 /* --- Kompüter/Tablet (Responsive) --- */
 @media screen and (min-width: 768px) {
     body {
@@ -210,7 +220,7 @@ footer a {
     }
     #panel {
         right: 30px;
-        width: 350px; /* Kompüterdə daha kiçik panel */
+        width: 350px;
         max-height: 500px;
     }
 }
