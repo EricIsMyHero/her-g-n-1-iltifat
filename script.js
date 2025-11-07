@@ -1,15 +1,24 @@
 fetch('iltifatlar.json')
   .then(res => res.json())
   .then(compliments => {
-    const today = new Date();
-    const day = today.getDate();
-    const month = today.toLocaleString('az-AZ', { month: 'long' });
-    const year = today.getFullYear();
-    const index = today.getDate() % compliments.length;
+    // İltifatı tətbiq etməzdən əvvəl məzmunu gizlədin (Animasiya üçün)
+    document.getElementById("compliment").style.opacity = 0; 
 
-    document.getElementById("dayCount").textContent = `📅 Bugün ${day} ${month} ${year}`;
-    document.getElementById("complimentNumber").textContent = ` İltifatlar ${index + 1}/${compliments.length}`;
-    document.getElementById("compliment").textContent = compliments[index];
+    setTimeout(() => {
+        const today = new Date();
+        const day = today.getDate();
+        const month = today.toLocaleString('az-AZ', { month: 'long' });
+        const year = today.getFullYear();
+        const index = today.getDate() % compliments.length;
+
+        document.getElementById("dayCount").textContent = `📅 Bugün ${day} ${month} ${year}`;
+        document.getElementById("complimentNumber").textContent = ` İltifatlar ${index + 1}/${compliments.length}`;
+        document.getElementById("compliment").textContent = compliments[index];
+        
+        // Məzmunu görünür edin
+        document.getElementById("compliment").style.opacity = 1;
+
+    }, 300); // 0.3 saniyə gözləyin ki, CSS-dəki transition işləsin
   })
   .catch(error => {
     document.getElementById("compliment").textContent = "İltifatlar yüklənə bilmədi 😢";
@@ -64,11 +73,7 @@ function updateProgressBar() {
 updateProgressBar();
 setInterval(updateProgressBar, 1000);
 
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("service-worker.js")
-    .then(() => console.log("✅ Service Worker qeydiyyatdan keçdi!"))
-    .catch(error => console.error("❌ Xəta:", error));
-}
+// XƏTA VERƏN SERVICE WORKER HİSSƏSİ SİLİNDİ
 
 function togglePanel() {
   const panel = document.getElementById("panel");
